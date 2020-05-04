@@ -27,11 +27,10 @@ describe("Site Pages", function() {
             cy.wait(100);
             cy.contains("Recent Observations");
             // contains links to the most recent observations, check for a few
-            cy.get("a[href='/#!/observations/166']")
-            cy.get("a[href='/#!/observations/121']")
-            cy.get("a[href='/#!/observations/1']")
-            cy.get("a[href='/#!/observations/177']")
-            cy.get("a[href='/#!/observations/76']")
+            let recent = [166, 121, 1, 177, 228, 159];
+            for(let i=0; i<recent.length; i++) {
+                cy.get("a[href='/#!/observations/"+recent[i]+"']")
+            }
         })
 
         it("contains a list of the top 10 users", function() {
