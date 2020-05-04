@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 
 // form fields that are either inputs or selects
-const inputs = ['participant', 'temperature', 'height', 'girth', 'location'];
+const inputs = ['temperature', 'height', 'girth', 'location'];
 const selects = ['weather', 'wind','leaf_size', 'leaf_shape', 'bark_colour', 'bark_texture' ];
 
 
@@ -24,6 +24,8 @@ describe("Form Submission", function() {
         cy.get("form").within(function() {
             // and it has all of the required fields
 
+            cy.get('input[name="participant"]');
+
             for(let i=0; i<inputs.length; i++) {
                 cy.get('input[name="'+inputs[i]+'"]');
             }
@@ -36,7 +38,6 @@ describe("Form Submission", function() {
     it("shows the user view including the new observation when the form is submitted", function() {
 
         const obs = {
-            "participant": 0, 
             "temperature": 13,
             "weather": "sunny",
             "wind": "strong",
@@ -51,14 +52,23 @@ describe("Form Submission", function() {
         
         cy.visit('http://localhost:8010/#!/submit');
         cy.wait(100);
-            for(let i=0; i<inputs.length; i++) {
-                cy.get('input[name="'+inputs[i]+'"]').type(obs[inputs[i]]);
-            };
 
-            for(let i=0; i<selects.length; i++) {
-                cy.get('select[name="'+selects[i]+'"]').select(obs[selects[i]]);
-            };
-            cy.get("form").submit();
+        cy.get('input[name="participant"]').then(($input) => {
+            if ($input.attr("type") === "text") {
+                cy.get($input).type('0');
+            } else {
+                cy.get($input).should('have.value', '0');
+            }
+        })
+
+        for(let i=0; i<inputs.length; i++) {
+            cy.get('input[name="'+inputs[i]+'"]').type(obs[inputs[i]]);
+        };
+
+        for(let i=0; i<selects.length; i++) {
+            cy.get('select[name="'+selects[i]+'"]').select(obs[selects[i]]);
+        };
+        cy.get("form").submit();
         
         // now check that the page is updated to the observation 
         cy.location().should((loc) => {
@@ -72,7 +82,6 @@ describe("Form Submission", function() {
     it("shows the list of errors when an incomplete form is submitted", function() {
 
         const obs = {
-            "participant": 0,
             "weather": "sunny",
             "wind": "strong",
             "height": 24,
@@ -85,6 +94,15 @@ describe("Form Submission", function() {
         
         cy.visit('http://localhost:8010/#!/submit');
         cy.wait(100);
+
+        cy.get('input[name="participant"]').then(($input) => {
+            if ($input.attr("type") === "text") {
+                cy.get($input).type('0');
+            } else {
+                cy.get($input).should('have.value', '0');
+            }
+        })
+
         for(let i=0; i<inputs.length; i++) {
             if (obs[inputs[i]] !== undefined) {
                 cy.get('input[name="'+inputs[i]+'"]').type(obs[inputs[i]]);
