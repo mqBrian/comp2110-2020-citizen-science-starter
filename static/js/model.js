@@ -25,7 +25,7 @@ const Model = {
     // when the request is resolved, creates a "modelUpdated" event 
     // with the model as the event detail
     update_users: function() {
-        
+
     },
 
     // update_observations - retrieve the latest list of observations
@@ -43,7 +43,13 @@ const Model = {
 
     // get_observation - return a single observation given its id
     get_observation: function(observationid) {
-        
+
+        let list = this.get_observation();
+        for (let i = 0; i < list; i++){
+            if(list[i].userid == observationid.userid){
+                return list[i];
+            }
+        }
     },
  
     set_observations: function(observations) {
@@ -62,7 +68,8 @@ const Model = {
     // get_user_observations - return just the observations for
     //   one user as an array
     get_user_observations: function(userid) {
-
+        let list = [];
+        return list.push(get_observation(userid));
     },
 
     // get_recent_observations - return the N most recent
@@ -87,7 +94,6 @@ const Model = {
     // get_user - return the details of a single user given 
     //    the user id
     get_user: function(userid) {
-
     }
 
 };
