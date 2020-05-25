@@ -1,42 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Citizen Science</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
 
-    <!-- Include Handlebars from a CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-    <script src="/static/js/main.js" type=module defer></script>
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8">
+  <title>Citizen Science</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/css/style.css" type="text/css">
 
-    <header>
-      <div id="logo"></div>
-      <nav>
-          <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#!/users">Users</a></li>
-              <li><a href="#!/observations">Observations</a></li>
-              <li><a href="#!/submit">Submit an observation</a></li>
-          </ul>
-      </nav>
-    </header>
+  <!-- Include Handlebars from a CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+  <script src="/static/js/main.js" type=module defer></script>
+</head>
 
-    <div id="content">
+<body>
 
-      <div id="heading">
-          
-          <hgroup>
-              <h1>Citizen Science</h1>
-              <h2>Understanding Our Trees</h2>
-          </hgroup>
-      
-          <div id="target"></div>
+  <header>
+    <div id="logo"></div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#!/users">Users</a></li>
+        <li><a href="#!/observations">Observations</a></li>
+        <li><a href="#!/submit">Submit an observation</a></li>
+      </ul>
+    </nav>
+  </header>
 
-      </div>
+  <div id="content">
+
+    <div id="heading">
+
+      <hgroup>
+        <h1>Citizen Science</h1>
+        <h2>Understanding Our Trees</h2>
+      </hgroup>
+
+      <div id="target"></div>
+
     </div>
+  </div>
 
   <footer>
 
@@ -53,12 +55,21 @@
       <li><a href="#">Privacy</a></li>
       <li><a href="#">Cookies</a></li>
     </ul>
-    
+
     <p id="copyright">All content and images subject to copyright &copy; COMP2110 Citizen Science 2020.</p>
   </footer>
 
 
   <!-- Templates -->
+  <script id="users-list-template" type="text/x-handlebars-template">
+    <table>
+      <tr><th>ID</th><th>First_Name<th>Last_Name</th><th>Email</th><th>Avatar</th></tr>
+      {{#each users}}
+        <tr><th class = users-name data-id ={{_id}}>{{id}}</th> <th>{{first_name}}</th> <th>{{last_name}}</th> <th>{{email}}</th> <th>{{avatar}}</th></tr>
+      {{/each}}
+     </table>
+  </script>
 
-  </body>
+</body>
+
 </html>
