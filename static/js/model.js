@@ -34,7 +34,14 @@ const Model = {
         )
         .then(
             (data) => {
-                this.data.users = data;
+
+                let newdata = []
+                for(let i = 0; i < data.length; i++){
+                    if(data[i].code != ""){
+                        newdata.push(data[i]);
+                    }
+                }
+                this.data.users = newdata;
 
                 let event = new CustomEvent("modelUpdated");
                 window.dispatchEvent(event);
@@ -100,7 +107,7 @@ const Model = {
         let arr = [];
         // return list.push(get_observation(userid));
         for(let i = 0; i<list; i++){
-            if(list[i].userid == userid){
+            if(list[i].userid === userid){
                 arr.push(list[i]);
             }
         }
@@ -136,7 +143,7 @@ const Model = {
     get_user: function(userid) {
         let list = this.get_users();
         for(let i = 0; i < list; i++){
-            if(list[i].userid == userid)
+            if(list[i].userid === userid)
                 return list[i];
         }
     }

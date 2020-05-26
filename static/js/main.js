@@ -1,3 +1,5 @@
+import * as views from 'views.js';
+import{Model} from './model.js';
 
 function redraw() { 
 
@@ -8,8 +10,34 @@ function redraw() {
     content += "<li><a href='/api/observations/1'>Detail of one observation</a></li>"; 
     content += "</ul>";
 
+
     // update the page
     document.getElementById("target").innerHTML = content;
+}
+
+window.addEventListener("modelUpdated", function() {
+
+    let users = Model.get_users();
+    views.listUsersView("content", users);
+
+    bindings();
+})
+
+function user_click_handler(e){
+
+    let user = Model.get_user(this.dataset.id);
+
+    views.userView()
+
+}
+
+function bindings(){
+
+    let elements = document.getElementsByClassName("user")
+    // console.log(elements);
+    for(let i = 0; i<elements.length; i++){
+        elements[i].click = user_click_handler;
+    }
 }
 
 window.onload = function() {
