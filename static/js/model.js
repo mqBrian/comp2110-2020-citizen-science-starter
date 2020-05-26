@@ -26,6 +26,20 @@ const Model = {
     // with the model as the event detail
     update_users: function() {
 
+        fetch(this.users_url)
+        .then(
+            function(response) {
+                return response.json();
+            }
+        )
+        .then(
+            (data) => {
+                this.data.users = data;
+
+                let event = new CustomEvent("modelUpdated");
+                window.dispatchEvent(event);
+            }
+        );
     },
 
     // update_observations - retrieve the latest list of observations
@@ -33,7 +47,21 @@ const Model = {
     // when the request is resolved, creates a "modelUpdated" event 
     // with the model as the event detail
     update_observations: function() {
-        
+
+        fetch(this.observations_url)
+        .then(
+            function(response) {
+                return response.json();
+            }
+        )
+        .then(
+            (data) => {
+                this.data.observations = data;
+
+                let event = new CustomEvent("modelUpdated");
+                window.dispatchEvent(event);
+            }
+        );
     },
 
     // get_observations - return an array of observation objects
@@ -68,14 +96,26 @@ const Model = {
     // get_user_observations - return just the observations for
     //   one user as an array
     get_user_observations: function(userid) {
-        let list = [];
-        return list.push(get_observation(userid));
+        let list = this.get_observations();
+        let arr = [];
+        // return list.push(get_observation(userid));
+        for(let i = 0; i<list; i++){
+            if(list[i].userid == userid){
+                arr.push(list[i]);
+            }
+        }
+        return arr;
     },
 
     // get_recent_observations - return the N most recent
     //  observations, ordered by timestamp, most recent first
     get_recent_observations: function(N) {
-
+        let list = get_observation();
+        let arr = [];
+        for(let i = 0; i<N; i++){
+            arr.push(list[i]);  
+        }
+        return arr;
     },
 
     /* 
@@ -94,6 +134,11 @@ const Model = {
     // get_user - return the details of a single user given 
     //    the user id
     get_user: function(userid) {
+        let list = this.get_users();
+        for(let i = 0; i < list; i++){
+            if(list[i].userid == userid)
+                return list[i];
+        }
     }
 
 };

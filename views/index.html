@@ -62,10 +62,11 @@
 
   <!-- Templates -->
   <script id="users-list-template" type="text/x-handlebars-template">
+    <img src="{{avatar}}" alt="{{name}}"
     <table>
       <tr><th>ID</th><th>First_Name<th>Last_Name</th><th>Email</th><th>Avatar</th></tr>
       {{#each users}}
-        <tr><th class = users-name data-id ={{_id}}>{{id}}</th> <th>{{first_name}}</th> <th>{{last_name}}</th> <th>{{email}}</th> <th>{{avatar}}</th></tr>
+        <tr><th class = user-name data-id ={{_id}}>{{id}}</th> <th>{{first_name}}</th> <th>{{last_name}}</th> <th>{{email}}</th></tr>
       {{/each}}
      </table>
   </script>
