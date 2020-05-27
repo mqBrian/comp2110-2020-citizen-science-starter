@@ -1,4 +1,4 @@
-import * as views from 'views.js';
+import * as views from './views.js';
 import{Model} from './model.js';
 
 function redraw() { 
@@ -15,10 +15,12 @@ function redraw() {
     document.getElementById("target").innerHTML = content;
 }
 
-window.addEventListener("modelUpdated", function() {
+window.addEventListener("modelUpdated", function(e) {
 
-    let users = Model.get_users();
-    views.listUsersView("content", users);
+    console.log('hello....')
+    let users = Model.data.users;
+
+    views.listUsersView("target", users);
 
     bindings();
 })
@@ -42,6 +44,10 @@ function bindings(){
 
 window.onload = function() {
     redraw();
+
+    this.console.log("Nope");
+    Model.update_users();
+    // Model.update_observations();
 };
 
 

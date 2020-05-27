@@ -1,4 +1,5 @@
 export {Model};
+import {listUsersView} from './views.js';
 
 /* 
  * Model class to support the Citizen Science application
@@ -33,18 +34,23 @@ const Model = {
             }
         )
         .then(
-            (data) => {
+            (data) =>{
 
-                let newdata = []
-                for(let i = 0; i < data.length; i++){
-                    if(data[i].code != ""){
-                        newdata.push(data[i]);
-                    }
-                }
-                this.data.users = newdata;
+                console.log('Wagwan');
+                // views.listUsersView("target", data);
+                // for(let i = 0; i < data.length; i++){
+                //     if(data[i].code != ""){
+                //         newdata.push(data[i]);
+                //     }
+                // }
+                // this.data.users = newdata;
+
+                this.data.users = data;
 
                 let event = new CustomEvent("modelUpdated");
                 window.dispatchEvent(event);
+            
+                
             }
         );
     },
@@ -108,7 +114,7 @@ const Model = {
         // return list.push(get_observation(userid));
         for(let i = 0; i<list; i++){
             if(list[i].userid === userid){
-                arr.push(list[i]);
+                arr.push(list[i].get_observation());
             }
         }
         return arr;
@@ -146,6 +152,7 @@ const Model = {
             if(list[i].userid === userid)
                 return list[i];
         }
+        return null;
     }
 
 };

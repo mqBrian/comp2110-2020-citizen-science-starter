@@ -62,10 +62,9 @@
 
   <!-- Templates -->
   <script id="users-list-template" type="text/x-handlebars-template">
-    <img src="{{avatar}}" alt="{{name}}"
     <table>
-      <tr><th>ID</th><th>First_Name<th>Last_Name</th>
-        <th>Email</th><th>Avatar</th></tr>
+      <tr><th>ID</th><th>First Name<th>Last Name</th>
+        <th>Email</th></tr>
       {{#each users}}
         <tr><th class = user data-id ={{id}}>{{id}}</th> 
           <th>{{first_name}}</th> <th>{{last_name}}</th> <th>{{email}}</th></tr>
@@ -75,15 +74,13 @@
 
   <script id = "user-detail-template" type = "text/x-handlebars-template">
     <h2>User Detail</h2>
-    
-    <img src="{{avatar}}" alt"{{name}}">
-    <ul>
-      <li>{{id}}</li>
-      <li>{{first_name}}</li>
-      <li>{{last_name}}</li>
-      <li>{{email}}</li>  
-    </ul>
-
+      <img src="{{avatar}}" alt"{{first_name}}">
+      <ul>
+        <li>{{id}}</li>
+        <li>{{first_name}}</li>
+        <li>{{last_name}}</li>
+        <li>{{email}}</li>  
+      </ul>
   </script> 
 
 </body>
