@@ -35,6 +35,72 @@
         <h2>Understanding Our Trees</h2>
       </hgroup>
 
+      
+      <form id=add-obs method=POST action='/api/observations'>
+
+        <label for=participant>Participant</label>
+        <input name=participant>
+
+        <label for=temperature>Temp</label>
+        <input name=temperature>
+
+        <select name = weather>
+          <option value="fine">Fine</option>
+          <option value="raining">Raining</option>
+          <option value="sunny">Sunny</option>
+          <option value="stormy">Stormy</option>
+        </select>
+
+        <select name = wind>
+          <option value="none">None</option>
+          <option value="light">Light</option>
+          <option value="medium">Medium</option>
+          <option value="strong">Strong</option>
+        </select>
+
+        <label for=location>Location</label>
+        <input name=location>
+
+        <label for=height>Height</label>
+        <input name=height>
+
+        <label for=girth>Girth</label>
+        <input name=girth>
+
+        <label for=leaf_size>Leaf Size</label>
+        <select name = leaf_size>
+          <option value="small">Small</option>
+          <option value="medium">Medium</option>
+          <option value="large">Large</option>
+        </select>
+
+        <label for=leaf_shape>Leaf Shape</label>
+        <select name = leaf_shape>
+          <option value="rounded">Rounded</option>
+          <option value="pointy">Pointy</option>
+          <option value="divided">Divided</option>
+        </select>
+
+        <label for=bark_colour>Bark Colour</label>
+        <select name = bark_colour>
+          <option value="grey">Grey</option>
+          <option value="red">Red</option>
+          <option value="silver">Silver</option>
+          <option value="brown">Brown</option>
+        </select>
+
+        <label for=bark_texture>Bark Texture</label>
+        <select name = bark_texture>
+          <option value="smooth">Smooth</option>
+          <option value="peeling">Peeling</option>
+          <option value="crinkles">Crinkles</option>
+          <option value="furry">Furry</option>
+          <option value="spotty">Spotty</option>
+        </select>
+
+        <input type=submit>
+      </form>
+
       <div id="target"></div>
       
 

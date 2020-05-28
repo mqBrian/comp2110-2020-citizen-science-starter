@@ -22,7 +22,7 @@ function redraw() {
     // Model.update_observations();
 
     let hash = split_hash(window.location.hash);
-    console.log(hash);
+    // console.log(hash);
     
     if(window.location.hash === "#!/users"){
         views.listUsersView("target", users);
@@ -36,8 +36,8 @@ window.addEventListener("modelUpdated", function(e) {
 
     // console.log('modelUpdated triggered');
 
-    views.listUsersView("users", users);
-    console.log('Whut ' + obs[0]);
+    // views.listUsersView("users", users);
+    // console.log(Model.get_observation());
     bindings();
 });
 
@@ -55,9 +55,16 @@ function user_click_handler(e){
     console.log("showed the unit");
     // console.log(Model.get_user());
 
-};
+}
 
-// Binding that decides what to do for every single user
+function add_observation(){
+    console.log(this);
+    return false;
+}
+
+// Binding that decides what to do:
+//  when a users name is clicked for every single user
+//  when a form is submitted
 function bindings(){
 
     let users = document.getElementsByClassName("user");
@@ -65,12 +72,23 @@ function bindings(){
     for(let i = 0; i<users.length; i++){
         users[i].onclick = user_click_handler;
     }
-};
+
+    let form = document.getElementById("add-obs");
+    form.onsubmit = Model.add_observation;
+    // form.onsubmit = function submitted(){
+    //     Model.add_observation();
+    //     views.userView();
+    // }
+
+    console.log(form);
+
+    
+}
 
 // What happens when the window is loaded
 window.onload = function() {
     redraw();
-};
+}
 
 window.onhashchange = redraw;
 
