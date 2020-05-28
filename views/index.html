@@ -36,6 +36,11 @@
       </hgroup>
 
       <div id="target"></div>
+      
+
+      <!-- <remove later please -->
+      <div id="user-detail"></div>
+      <div id="users"></div> 
 
     </div>
   </div>
@@ -66,8 +71,9 @@
       <tr><th>ID</th><th>First Name<th>Last Name</th>
         <th>Email</th></tr>
       {{#each users}}
-        <tr><th class = user data-id ={{id}}>{{id}}</th> 
-          <th>{{first_name}}</th> <th>{{last_name}}</th> <th>{{email}}</th></tr>
+        <!-- <tr><tr class = user data-id ={{id}}>{{id}}</tr>  -->
+        <tr><td class =user>{{id}}</td> 
+          <td>{{first_name}}</td> <td>{{last_name}}</td> <td>{{email}}</td></tr>
       {{/each}}
      </table>
   </script>

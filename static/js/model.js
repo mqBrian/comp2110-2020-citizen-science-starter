@@ -29,28 +29,17 @@ const Model = {
 
         fetch(this.users_url)
         .then(
-            function(response) {
+            function (response){
                 return response.json();
             }
         )
         .then(
             (data) =>{
-
-                console.log('Wagwan');
-                // views.listUsersView("target", data);
-                // for(let i = 0; i < data.length; i++){
-                //     if(data[i].code != ""){
-                //         newdata.push(data[i]);
-                //     }
-                // }
-                // this.data.users = newdata;
-
                 this.data.users = data;
+                // console.log(this.data.users);
 
                 let event = new CustomEvent("modelUpdated");
                 window.dispatchEvent(event);
-            
-                
             }
         );
     },
@@ -68,7 +57,7 @@ const Model = {
             }
         )
         .then(
-            (data) => {
+            (data) =>{
                 this.data.observations = data;
 
                 let event = new CustomEvent("modelUpdated");
@@ -147,12 +136,12 @@ const Model = {
     // get_user - return the details of a single user given 
     //    the user id
     get_user: function(userid) {
+
         let list = this.get_users();
         for(let i = 0; i < list; i++){
             if(list[i].userid === userid)
                 return list[i];
         }
-        return null;
     }
 
 };
